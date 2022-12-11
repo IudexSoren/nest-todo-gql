@@ -1,0 +1,53 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+"""Todo quick aggregations|"""
+type AggregationsType {
+  totalTodos: Int! @deprecated(reason: "Use 'total' instead")
+  total: Int!
+  pending: Int!
+  completed: Int!
+}
+
+type Query {
+  """Hello nigga message"""
+  hello: String!
+  randomNumber: Float!
+
+  """
+  Generates a random integer number from 0 to the specified value. If it's not specified, it will be 6 by default.
+  """
+  randomFromZeroTo(to: Int! = 6): Int!
+  todos(status: Boolean): [Todo!]!
+  todo(id: Int!): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggregations: AggregationsType!
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  removeTodo(id: Int!): Todo!
+}
+
+input CreateTodoInput {
+  """What needs to be done"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  id: Int!
+
+  """What needs to be done"""
+  description: String
+  done: Boolean
+}
